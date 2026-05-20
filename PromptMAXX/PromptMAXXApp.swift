@@ -13,5 +13,9 @@ struct PromptMAXXApp: App {
         WindowGroup {
             ContentView()
         }
+
+        Settings {
+            SetupView()
+        }
     }
 }
