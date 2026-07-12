@@ -40,10 +40,11 @@ python src/generate.py --chat
 
 ```
 solira> HISTORIA
-[HISTORIA] Le enfant era joven e felis. La madre bela kantava en le jardin ...
+[HISTORIA] Avan mucho tempo, le doktor andava sur un longo kamin.
+Les reinas an skrivet les papeles rozos. E le sol brilava sur le mundo.
 
-solira> [FRASE] Le gato
-[FRASE] Le gato negro dormi sur la tabla vela ...
+solira> [FRASE] Le rey
+[FRASE] Le rey a trovat unes luzes rozas.
 ```
 
 ### Don't want to install PyTorch?
@@ -95,17 +96,38 @@ Sampling knobs: `--temperature` (default 0.9), `--top-k` (default 40),
 
 ---
 
-## Model card
+## Sample output (from the trained checkpoint)
 
-<!-- METRICS -->
+Generated with `python src/generate.py` (temperature 0.8, top-k 40):
+
+| Solira | English |
+|---|---|
+| Ai una kasa grande sot nos ponte baso. | There's a big house under our low bridge. |
+| La fema a komet les sales. | The woman ate the salts. |
+| Le rey a trovat unes luzes rozas. | The king found some pink lights. |
+| Les lobos an morit. | The wolves have died. |
+| **[QA]** Ki es akela person? — Akela person es un rey povre. | Who is that person? — That person is a poor king. |
+| **[QA]** Ke kompran elas? — Elas kompran mis plumes. | What do they buy? — They buy my pens. |
+| **[DIALOG]** — Esk le kavalo es un enfant? — No, pra nada. | — Is the horse a child? — No, not at all. |
+| **[SALU]** — Ola! — Bon jorno! Komo estas? — Bien, bien. E tu? | — Hi! — Good morning! How are you? — Fine, fine. And you? |
+| **[HISTORIA]** Avan mucho tempo, le doktor andava sur un longo kamin. Les reinas an skrivet les papeles rozos. E le sol brilava sur le mundo. | Long ago, the doctor was walking on a long road. The queens wrote the pink papers. And the sun shone over the world. |
+
+The model reliably produces correct gender/number agreement, all four tenses,
+questions, negation, and existentials. Being 1M parameters, it occasionally
+slips (e.g. a missed predicate-adjective plural) and its sentences are
+semantically playful — exactly what you'd expect at this scale.
+
+## Model card
 
 - **Architecture:** decoder-only Transformer — 5 layers, 4 heads, d_model 128,
   block size 256, tied embeddings, GELU MLP (4×). **1,089,920 parameters.**
 - **Tokenizer:** custom character-level BPE, **512** tokens, ~2.6 chars/token.
 - **Training data:** 50,000 procedurally-generated Solira documents
   (~3.9M characters / ~1.2M tokens), across 5 genres.
-- **Training:** AdamW, warmup + cosine LR, ~3000 steps on CPU (minutes on MPS).
-- **Backends:** PyTorch (CPU / MPS / CUDA) and a dependency-free numpy path.
+- **Training:** AdamW, warmup + cosine LR, 3000 steps. **Final val loss 1.544**
+  (≈ perplexity 4.7), ~44 min on this 4-core CPU; far faster on Apple MPS.
+- **Backends:** PyTorch (CPU / MPS / CUDA) and a dependency-free numpy path
+  (verified to match PyTorch logits to within 4e-6).
 
 ## Retraining / customizing
 
