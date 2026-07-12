@@ -2,7 +2,9 @@
 data/corpus.txt
 data/val.txt
 data/*.bin
-data/train.log
+data/*.log
+data/model_[0-9]*.pt
+data/_*.pt
 
 # Python cruft
 __pycache__/

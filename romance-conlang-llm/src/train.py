@@ -103,6 +103,8 @@ def main():
     ap.add_argument("--device", default="auto")
     ap.add_argument("--seed", type=int, default=1337)
     ap.add_argument("--out", default=os.path.join(DATA, "model.pt"))
+    ap.add_argument("--init-from", default=None,
+                    help="warm-start from an existing checkpoint (continue training)")
     args = ap.parse_args()
 
     torch.manual_seed(args.seed)
@@ -123,6 +125,14 @@ def main():
                     n_embd=args.n_embd, dropout=args.dropout)
     model = GPT(cfg).to(device)
     print(f"parameters: {model.num_params():,}")
+
+    if args.init_from:
+        prev = torch.load(args.init_from, map_location=device)
+        if prev["config"] != asdict(cfg):
+            raise SystemExit(f"init-from config {prev['config']} != current {asdict(cfg)}")
+        model.load_state_dict(prev["model"])
+        print(f"warm-started from {args.init_from} "
+              f"(prev step {prev.get('step')}, val {prev.get('val_loss'):.3f})")
 
     optim = torch.optim.AdamW(model.parameters(), lr=args.lr,
                               betas=(0.9, 0.95), weight_decay=args.weight_decay)
