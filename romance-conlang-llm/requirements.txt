@@ -1,0 +1,6 @@
+# Training needs PyTorch (Apple-silicon wheels include the MPS backend).
+torch>=2.1
+numpy>=1.24
+
+# Inference can run with numpy alone — see src/generate_numpy.py.
+# In that case only the `numpy` line above is required.

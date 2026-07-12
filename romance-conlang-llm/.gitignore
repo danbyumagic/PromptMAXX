@@ -1,0 +1,20 @@
+# Regenerable corpus + encode caches + logs (recreate with `make corpus`).
+data/corpus.txt
+data/val.txt
+data/*.bin
+data/train.log
+
+# Python cruft
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# data/tokenizer.json IS committed (stable, needed to run the model).
+#
+# The trained weights below are added in a follow-up commit once training
+# finishes, so the model runs out of the box. They are ignored for now only
+# to avoid staging a half-written checkpoint while training is in progress.
+data/model.pt
+data/model_weights.npz
+data/model_config.json
