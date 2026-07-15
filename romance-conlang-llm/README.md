@@ -124,8 +124,11 @@ semantically playful — exactly what you'd expect at this scale.
 - **Tokenizer:** custom character-level BPE, **512** tokens, ~2.6 chars/token.
 - **Training data:** 50,000 procedurally-generated Solira documents
   (~3.9M characters / ~1.2M tokens), across 5 genres.
-- **Training:** AdamW, warmup + cosine LR, 3000 steps. **Final val loss 1.544**
-  (≈ perplexity 4.7), ~44 min on this 4-core CPU; far faster on Apple MPS.
+- **Training:** AdamW, warmup + cosine LR, 3000 steps followed by a 3000-step
+  warm-restart (`--init-from`). **Final val loss 1.537** (≈ perplexity 4.65),
+  ~1.5 h total on this 4-core CPU; far faster on Apple MPS. At this point the
+  ~1.1M-param model is essentially converged on the corpus (train/val ≈
+  1.48 / 1.54), i.e. capacity-limited rather than step-limited.
 - **Backends:** PyTorch (CPU / MPS / CUDA) and a dependency-free numpy path
   (verified to match PyTorch logits to within 4e-6).
 
