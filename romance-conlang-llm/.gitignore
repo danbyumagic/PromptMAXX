@@ -1,0 +1,19 @@
+# Regenerable corpus + encode caches + logs (recreate with `make corpus`).
+data/corpus.txt
+data/val.txt
+data/*.bin
+data/*.log
+data/model_[0-9]*.pt
+data/_*.pt
+
+# Python cruft
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Committed on purpose (so the model runs out of the box):
+#   data/tokenizer.json      — the BPE tokenizer
+#   data/model.pt            — trained PyTorch checkpoint (~4.4 MB)
+#   data/model_weights.npz   — same weights for the numpy backend
+#   data/model_config.json   — architecture config for the numpy backend
