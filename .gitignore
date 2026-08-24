@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode user state
+xcuserdata/
+*.xcuserstate
+*.xccheckout
+
+# Xcode build products and derived data
+DerivedData/
+build/
+*.build/
+*.app
+*.dSYM
+*.dSYM.zip
+
+# Swift Package Manager
+.swiftpm/
+Package.resolved
+
+# Archives and test artifacts
+*.xcarchive
+*.ipa
+*.hmap
+*.coverage
+
+# Local environment and editor files
+.idea/
+.vscode/
+*.swp

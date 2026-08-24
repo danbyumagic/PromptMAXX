@@ -1,0 +1,244 @@
+{
+  "aggregate" : {
+    "errorCount" : 0,
+    "evaluatedCases" : 10,
+    "hitRateAtK" : 1,
+    "hits" : 10,
+    "recallAtK" : 1,
+    "sourceCoverage" : 1,
+    "totalCases" : 10,
+    "zeroResultCount" : 0
+  },
+  "metadata" : {
+    "characterBudget" : 2000,
+    "chunkSize" : 800,
+    "completedAt" : "2026-08-18T03:17:03Z",
+    "corpusID" : "promptmaxx-grounding-demo",
+    "corpusVersion" : 1,
+    "dimensions" : 1024,
+    "embeddingModel" : "bge-m3:latest",
+    "endpointLocality" : "local",
+    "lexicalWeight" : 0.15,
+    "mmrLambda" : 0.75,
+    "overlap" : 120,
+    "providerModelVersion" : "7907646426070047a77226ac3e684fbbe8410524f7b4a74d02837e43f2146bab",
+    "sameSourcePenalty" : 0.1,
+    "split" : "tuning",
+    "suiteID" : "promptmaxx-grounding-demo-suite",
+    "suiteVersion" : 1,
+    "timestamp" : "2026-08-18T03:17:02Z",
+    "topK" : 3
+  },
+  "outcomes" : [
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-01",
+      "query" : "How often are Riverbend water samples collected?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-water-quality"
+      ],
+      "retrievedChunkIDs" : [
+        "93928204aff92bcb015c21f34ee9c301707414d7de1bb3d7f4180ee356df0151",
+        "741275065a6c5051471e6f9daac54cb8212e55a67c26a23a62723ab526804414",
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-community-garden",
+        "demo-privacy-retention",
+        "demo-water-quality"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-02",
+      "query" : "Which nitrate reading triggers follow-up?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-water-quality"
+      ],
+      "retrievedChunkIDs" : [
+        "93928204aff92bcb015c21f34ee9c301707414d7de1bb3d7f4180ee356df0151",
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-privacy-retention",
+        "demo-release-playbook",
+        "demo-water-quality"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-03",
+      "query" : "How are Greenfield garden plots assigned?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-community-garden"
+      ],
+      "retrievedChunkIDs" : [
+        "741275065a6c5051471e6f9daac54cb8212e55a67c26a23a62723ab526804414",
+        "f67a82bce95f5fa6b8f242cd3e6d4dc4f64660026c823d5a455d6fdc14f86ebc",
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-community-garden",
+        "demo-emergency-plan",
+        "demo-release-playbook"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-04",
+      "query" : "When may gardeners water to reduce evaporation?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-community-garden"
+      ],
+      "retrievedChunkIDs" : [
+        "741275065a6c5051471e6f9daac54cb8212e55a67c26a23a62723ab526804414",
+        "93928204aff92bcb015c21f34ee9c301707414d7de1bb3d7f4180ee356df0151",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-community-garden",
+        "demo-transit-safety",
+        "demo-water-quality"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-05",
+      "query" : "What must happen before a Northstar rollout?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-release-playbook"
+      ],
+      "retrievedChunkIDs" : [
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850",
+        "741275065a6c5051471e6f9daac54cb8212e55a67c26a23a62723ab526804414"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-community-garden",
+        "demo-release-playbook",
+        "demo-transit-safety"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-06",
+      "query" : "Who owns the release change window?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-release-playbook"
+      ],
+      "retrievedChunkIDs" : [
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-privacy-retention",
+        "demo-release-playbook",
+        "demo-transit-safety"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-07",
+      "query" : "When do local endpoints keep prompts on the Mac?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-privacy-retention"
+      ],
+      "retrievedChunkIDs" : [
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0",
+        "f67a82bce95f5fa6b8f242cd3e6d4dc4f64660026c823d5a455d6fdc14f86ebc",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-emergency-plan",
+        "demo-privacy-retention",
+        "demo-transit-safety"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-08",
+      "query" : "How often is the retention review scheduled?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-privacy-retention"
+      ],
+      "retrievedChunkIDs" : [
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0",
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "410fe88beb3f91cf50ed8fd6822012d339dee4d43cc13995e16b3f3641fba227"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-library-access",
+        "demo-privacy-retention",
+        "demo-release-playbook"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-09",
+      "query" : "What identification is needed for a Harbor library card?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-library-access"
+      ],
+      "retrievedChunkIDs" : [
+        "410fe88beb3f91cf50ed8fd6822012d339dee4d43cc13995e16b3f3641fba227",
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-library-access",
+        "demo-release-playbook",
+        "demo-transit-safety"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-tuning-10",
+      "query" : "How many study rooms can a member reserve?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-library-access"
+      ],
+      "retrievedChunkIDs" : [
+        "410fe88beb3f91cf50ed8fd6822012d339dee4d43cc13995e16b3f3641fba227",
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-library-access",
+        "demo-privacy-retention",
+        "demo-release-playbook"
+      ],
+      "split" : "tuning",
+      "status" : "evaluated"
+    }
+  ]
+}

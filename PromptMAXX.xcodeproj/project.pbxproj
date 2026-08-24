@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		3474AAC42FBB999400D89848 /* PromptMAXX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromptMAXX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3474AAC72FBB999400D89848 /* PromptMAXXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.xctest; includeInIndex = 0; path = PromptMAXXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +17,23 @@
 			path = PromptMAXX;
 			sourceTree = "<group>";
 		};
+		3474AAC82FBB999400D89848 /* PromptMAXXTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PromptMAXXTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3474AAC12FBB999400D89848 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+		3474AAC92FBB999400D89848 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				3474AAC42FBB999400D89848 /* PromptMAXX.app */,
+				3474AAC72FBB999400D89848 /* PromptMAXXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,7 +85,46 @@
 			productReference = 3474AAC42FBB999400D89848 /* PromptMAXX.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3474AACB2FBB999400D89848 /* PromptMAXXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3474AAD52FBB999500D89848 /* Build configuration list for PBXNativeTarget "PromptMAXXTests" */;
+			buildPhases = (
+				3474AACD2FBB999400D89848 /* Sources */,
+				3474AAC92FBB999400D89848 /* Frameworks */,
+				3474AACC2FBB999400D89848 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3474AACE2FBB999400D89848 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3474AAC82FBB999400D89848 /* PromptMAXXTests */,
+			);
+			name = PromptMAXXTests;
+			productName = PromptMAXXTests;
+			productReference = 3474AAC72FBB999400D89848 /* PromptMAXXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
+
+/* Begin PBXTargetDependency section */
+		3474AACE2FBB999400D89848 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3474AAC32FBB999400D89848 /* PromptMAXX */;
+			targetProxy = 3474AAD62FBB999400D89848 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		3474AAD62FBB999400D89848 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3474AABC2FBB999400D89848 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3474AAC32FBB999400D89848;
+			remoteInfo = PromptMAXX;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXProject section */
 		3474AABC2FBB999400D89848 /* Project object */ = {
@@ -82,6 +136,10 @@
 				TargetAttributes = {
 					3474AAC32FBB999400D89848 = {
 						CreatedOnToolsVersion = 26.5;
+					};
+					3474AACB2FBB999400D89848 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 3474AAC32FBB999400D89848;
 					};
 				};
 			};
@@ -100,6 +158,7 @@
 			projectRoot = "";
 			targets = (
 				3474AAC32FBB999400D89848 /* PromptMAXX */,
+				3474AACB2FBB999400D89848 /* PromptMAXXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -113,9 +172,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+		3474AACC2FBB999400D89848 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3474AAC02FBB999400D89848 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+		3474AACD2FBB999400D89848 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -160,7 +235,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = S3KV47LBW8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -224,7 +298,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = S3KV47LBW8;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -251,10 +324,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = PromptMAXX/PromptMAXX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S3KV47LBW8;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -268,7 +341,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -295,10 +368,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = PromptMAXX/PromptMAXX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S3KV47LBW8;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -312,7 +385,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -333,6 +406,42 @@
 			};
 			name = Release;
 		};
+		3474AAD32FBB999500D89848 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dbyup.PromptMAXXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PromptMAXX.app/Contents/MacOS/PromptMAXX";
+			};
+			name = Debug;
+		};
+		3474AAD42FBB999500D89848 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dbyup.PromptMAXXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PromptMAXX.app/Contents/MacOS/PromptMAXX";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -350,6 +459,15 @@
 			buildConfigurations = (
 				3474AAD02FBB999500D89848 /* Debug */,
 				3474AAD12FBB999500D89848 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3474AAD52FBB999500D89848 /* Build configuration list for PBXNativeTarget "PromptMAXXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3474AAD32FBB999500D89848 /* Debug */,
+				3474AAD42FBB999500D89848 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

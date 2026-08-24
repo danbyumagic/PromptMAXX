@@ -1,0 +1,246 @@
+{
+  "aggregate" : {
+    "errorCount" : 0,
+    "evaluatedCases" : 10,
+    "hitRateAtK" : 1,
+    "hits" : 10,
+    "recallAtK" : 0.95,
+    "sourceCoverage" : 1,
+    "totalCases" : 10,
+    "zeroResultCount" : 0
+  },
+  "metadata" : {
+    "characterBudget" : 2000,
+    "chunkSize" : 800,
+    "completedAt" : "2026-08-18T03:16:11Z",
+    "corpusID" : "promptmaxx-grounding-demo",
+    "corpusVersion" : 1,
+    "dimensions" : 1024,
+    "embeddingModel" : "bge-m3:latest",
+    "endpointLocality" : "local",
+    "lexicalWeight" : 0.15,
+    "mmrLambda" : 0.75,
+    "overlap" : 120,
+    "providerModelVersion" : "7907646426070047a77226ac3e684fbbe8410524f7b4a74d02837e43f2146bab",
+    "sameSourcePenalty" : 0.1,
+    "split" : "held-out",
+    "suiteID" : "promptmaxx-grounding-demo-suite",
+    "suiteVersion" : 1,
+    "timestamp" : "2026-08-18T03:16:09Z",
+    "topK" : 3
+  },
+  "outcomes" : [
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-01",
+      "query" : "Where does the monitoring team store measurements?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-water-quality"
+      ],
+      "retrievedChunkIDs" : [
+        "93928204aff92bcb015c21f34ee9c301707414d7de1bb3d7f4180ee356df0151",
+        "02cb3d3f40856131fb2943b1c623fafcdb7723ed962c66b875a098c059e00475",
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-energy-audit",
+        "demo-privacy-retention",
+        "demo-water-quality"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-02",
+      "query" : "What happens when a nitrate result is high?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-water-quality"
+      ],
+      "retrievedChunkIDs" : [
+        "93928204aff92bcb015c21f34ee9c301707414d7de1bb3d7f4180ee356df0151",
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-privacy-retention",
+        "demo-release-playbook",
+        "demo-water-quality"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-03",
+      "query" : "How many garden plots are reserved for accessible beds?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-community-garden"
+      ],
+      "retrievedChunkIDs" : [
+        "741275065a6c5051471e6f9daac54cb8212e55a67c26a23a62723ab526804414",
+        "410fe88beb3f91cf50ed8fd6822012d339dee4d43cc13995e16b3f3641fba227",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-community-garden",
+        "demo-library-access",
+        "demo-transit-safety"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-04",
+      "query" : "When is garden compost turned?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-community-garden"
+      ],
+      "retrievedChunkIDs" : [
+        "741275065a6c5051471e6f9daac54cb8212e55a67c26a23a62723ab526804414",
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-community-garden",
+        "demo-release-playbook",
+        "demo-transit-safety"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-05",
+      "query" : "Who can approve a release rollback?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-release-playbook"
+      ],
+      "retrievedChunkIDs" : [
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-privacy-retention",
+        "demo-release-playbook",
+        "demo-transit-safety"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-06",
+      "query" : "When are production changes frozen?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-release-playbook"
+      ],
+      "retrievedChunkIDs" : [
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f",
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0",
+        "02cb3d3f40856131fb2943b1c623fafcdb7723ed962c66b875a098c059e00475"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-energy-audit",
+        "demo-privacy-retention",
+        "demo-release-playbook"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-07",
+      "query" : "Where are run traces stored?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-privacy-retention"
+      ],
+      "retrievedChunkIDs" : [
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850",
+        "93928204aff92bcb015c21f34ee9c301707414d7de1bb3d7f4180ee356df0151"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-privacy-retention",
+        "demo-transit-safety",
+        "demo-water-quality"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-08",
+      "query" : "Which controls are described for PromptMAXX records, and what may Harbor members reserve?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-library-access",
+        "demo-privacy-retention"
+      ],
+      "retrievedChunkIDs" : [
+        "4fe8888aff70b094fbaf79c7a13aea5b2ae79750c1324b0905657202e90824d0",
+        "410fe88beb3f91cf50ed8fd6822012d339dee4d43cc13995e16b3f3641fba227",
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-library-access",
+        "demo-privacy-retention",
+        "demo-release-playbook"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-09",
+      "query" : "What are Harbor Library weekend hours?",
+      "recallAtK" : 1,
+      "relevantSourceIDs" : [
+        "demo-library-access"
+      ],
+      "retrievedChunkIDs" : [
+        "410fe88beb3f91cf50ed8fd6822012d339dee4d43cc13995e16b3f3641fba227",
+        "93928204aff92bcb015c21f34ee9c301707414d7de1bb3d7f4180ee356df0151",
+        "d3198015c625400df7ed3fb4a480247efc60576855c4d79059abca459619f02f"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-library-access",
+        "demo-release-playbook",
+        "demo-water-quality"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    },
+    {
+      "hitAtK" : true,
+      "id" : "q-heldout-10",
+      "query" : "Which access guides mention rooms and accessible beds?",
+      "recallAtK" : 0.5,
+      "relevantSourceIDs" : [
+        "demo-community-garden",
+        "demo-library-access"
+      ],
+      "retrievedChunkIDs" : [
+        "410fe88beb3f91cf50ed8fd6822012d339dee4d43cc13995e16b3f3641fba227",
+        "f67a82bce95f5fa6b8f242cd3e6d4dc4f64660026c823d5a455d6fdc14f86ebc",
+        "d3757bde85243aceb3a1200b39c18de44d90f8cd3854b4ac22eae3d889e12850"
+      ],
+      "retrievedSourceIDs" : [
+        "demo-emergency-plan",
+        "demo-library-access",
+        "demo-transit-safety"
+      ],
+      "split" : "held-out",
+      "status" : "evaluated"
+    }
+  ]
+}

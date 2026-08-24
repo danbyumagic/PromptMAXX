@@ -1,0 +1,39 @@
+name: macOS CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run local verification entry point
+        env:
+          PROMPTMAXX_VERIFY_ROOT: ${{ runner.temp }}/promptmaxx-verification
+          PROMPTMAXX_PROJECT: PromptMAXX.xcodeproj
+          PROMPTMAXX_SCHEME: PromptMAXX
+          PROMPTMAXX_SDK: macosx
+          PROMPTMAXX_DESTINATION: platform=macOS
+        run: ./scripts/verify.sh
+
+      - name: Upload verification logs and artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: promptmaxx-verification-${{ github.run_id }}
+          path: ${{ runner.temp }}/promptmaxx-verification/**/artifacts
+          if-no-files-found: ignore
+          retention-days: 7
