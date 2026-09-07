@@ -78,6 +78,7 @@ struct ContentView: View {
     @State private var generatedProfileName: String?
     @State private var showSpecEditor = false
     @State private var showRunDetails = false
+    @State private var showPromptChanges = false
     @State private var showComparisonSetup = false
     @State private var showComparisonResult = false
     @State private var showEvaluationLab = false
@@ -595,6 +596,10 @@ struct ContentView: View {
     }
 
     private var modelPicker: some View {
+        modelPickerView(compact: false)
+    }
+
+    private func modelPickerView(compact: Bool) -> some View {
         Menu {
             if availableModels.isEmpty {
                 Label("Ollama not running", systemImage: "exclamationmark.circle")
@@ -623,27 +628,42 @@ struct ContentView: View {
                 }
             }
         } label: {
-            HStack(spacing: 5) {
+            if compact {
                 Image(systemName: "cpu")
-                    .font(.system(size: 11))
-                    .foregroundStyle(availableModels.isEmpty ? .tertiary : .secondary)
-                Text(availableModels.isEmpty ? "No model" : modelShortName(selectedModel))
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(availableModels.isEmpty ? .tertiary : .primary)
-                Image(systemName: "chevron.up.chevron.down")
-                    .font(.system(size: 9))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(availableModels.isEmpty ? .tertiary : .secondary)
+                    .frame(width: 28, height: 26)
+                    .background(.quaternary, in: RoundedRectangle(cornerRadius: 7))
+            } else {
+                HStack(spacing: 5) {
+                    Image(systemName: "cpu")
+                        .font(.system(size: 11))
+                        .foregroundStyle(availableModels.isEmpty ? .tertiary : .secondary)
+                    Text(availableModels.isEmpty ? "No model" : modelShortName(selectedModel))
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundStyle(availableModels.isEmpty ? .tertiary : .primary)
+                    Image(systemName: "chevron.up.chevron.down")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.tertiary)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 5)
+                .background(.quaternary, in: RoundedRectangle(cornerRadius: 7))
             }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 5)
-            .background(.quaternary, in: RoundedRectangle(cornerRadius: 7))
         }
         .menuStyle(.borderlessButton)
         .fixedSize()
         .disabled(isComparing)
+        .help(compact ? "Model: \(availableModels.isEmpty ? "No model" : modelShortName(selectedModel))" : "Choose the Ollama model")
+        .accessibilityLabel("Model")
+        .accessibilityValue(availableModels.isEmpty ? "No model" : modelShortName(selectedModel))
     }
 
     private var profilePicker: some View {
+        profilePickerView(compact: false)
+    }
+
+    private func profilePickerView(compact: Bool) -> some View {
         Menu {
             ForEach(PromptProfile.builtIns) { profile in
                 Button {
@@ -671,24 +691,34 @@ struct ContentView: View {
                 }
             }
         } label: {
-            HStack(spacing: 5) {
+            if compact {
                 Image(systemName: "slider.horizontal.3")
-                    .font(.system(size: 11))
-                    .foregroundStyle(.secondary)
-                Text(selectedProfile.name)
                     .font(.system(size: 12, weight: .medium))
-                Image(systemName: "chevron.up.chevron.down")
-                    .font(.system(size: 9))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(.secondary)
+                    .frame(width: 28, height: 26)
+                    .background(.quaternary, in: RoundedRectangle(cornerRadius: 7))
+            } else {
+                HStack(spacing: 5) {
+                    Image(systemName: "slider.horizontal.3")
+                        .font(.system(size: 11))
+                        .foregroundStyle(.secondary)
+                    Text(selectedProfile.name)
+                        .font(.system(size: 12, weight: .medium))
+                    Image(systemName: "chevron.up.chevron.down")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.tertiary)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 5)
+                .background(.quaternary, in: RoundedRectangle(cornerRadius: 7))
             }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 5)
-            .background(.quaternary, in: RoundedRectangle(cornerRadius: 7))
         }
         .menuStyle(.borderlessButton)
         .fixedSize()
         .disabled(isComparing)
         .help("Refinement profile: \(selectedProfile.description)")
+        .accessibilityLabel("Refinement profile")
+        .accessibilityValue(selectedProfile.name)
     }
 
     private var endpointPrivacyBadge: some View {
@@ -706,6 +736,17 @@ struct ContentView: View {
         .help(endpointPrivacyDescription)
         .accessibilityLabel(endpointPrivacyLabel)
         .accessibilityValue(endpointPrivacyDescription)
+    }
+
+    private var compactEndpointPrivacyBadge: some View {
+        Image(systemName: endpoint?.isLoopback == true ? "lock.fill" : "network")
+            .font(.system(size: 12, weight: .medium))
+            .foregroundStyle(endpoint?.isLoopback == true ? .green : .orange)
+            .frame(width: 28, height: 26)
+            .background(.quaternary, in: RoundedRectangle(cornerRadius: 7))
+            .help(endpointPrivacyDescription)
+            .accessibilityLabel(endpointPrivacyLabel)
+            .accessibilityValue(endpointPrivacyDescription)
     }
 
     private func modelShortName(_ name: String) -> String {
@@ -753,12 +794,19 @@ struct ContentView: View {
     }
 
     private var editorToolbar: some View {
-        HStack(spacing: 10) {
+        GeometryReader { proxy in
+            Group {
+                // Switch before the labeled controls can be compressed into an ellipsis.
+                if proxy.size.width < 1_120 {
+                    compactEditorToolbar
+                } else {
+                    HStack(spacing: 10) {
             Button(action: requestNew) {
                 Label("New", systemImage: "square.and.pencil")
                     .font(.system(size: 13, weight: .medium))
             }
             .buttonStyle(.bordered)
+            .fixedSize(horizontal: true, vertical: false)
             .keyboardShortcut("n", modifiers: .command)
             .help("New prompt  ⌘N")
 
@@ -788,6 +836,7 @@ struct ContentView: View {
                 .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(.bordered)
+            .fixedSize(horizontal: true, vertical: false)
             .tint(isGenerating ? .orange : .purple)
             .keyboardShortcut(.return, modifiers: .command)
             .disabled(!isGenerating && (isComparing || originalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || endpoint == nil || !hasSelectedAvailableModel))
@@ -807,6 +856,18 @@ struct ContentView: View {
                     Label("Run Details", systemImage: "chart.bar.doc.horizontal")
                 }
                 .disabled(generationResult == nil || isComparing)
+
+                Button {
+                    showPromptChanges = true
+                } label: {
+                    Label("Prompt Changes", systemImage: "arrow.left.arrow.right")
+                }
+                .keyboardShortcut("d", modifiers: [.command, .option])
+                .disabled(
+                    isComparing ||
+                    (originalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                     refinedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                )
 
                 Button {
                     showTraceBrowser = true
@@ -851,6 +912,23 @@ struct ContentView: View {
             .fixedSize()
             .help("Edit the structured prompt or view run details")
 
+            Button {
+                showPromptChanges = true
+            } label: {
+                Image(systemName: "arrow.left.arrow.right")
+                    .font(.system(size: 13, weight: .medium))
+                    .frame(width: 18)
+            }
+            .buttonStyle(.borderless)
+            .fixedSize(horizontal: true, vertical: false)
+            .keyboardShortcut("d", modifiers: [.command, .shift])
+            .disabled(
+                isComparing ||
+                (originalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                 refinedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+            )
+            .help("Prompt Changes  ⇧⌘D")
+
             Button(action: saveToHistory) {
                 Label(
                     saveFeedback ? "Saved!" : "Save",
@@ -860,6 +938,7 @@ struct ContentView: View {
                 .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(.bordered)
+            .fixedSize(horizontal: true, vertical: false)
             .tint(saveFeedback ? .green : nil)
             .disabled(
                 store.state != .ready || isGenerating || isComparing || store.isSaving ||
@@ -876,6 +955,7 @@ struct ContentView: View {
                 .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(.borderedProminent)
+            .fixedSize(horizontal: true, vertical: false)
             .tint(copyFeedback ? .green : .accentColor)
             .disabled(activeText.isEmpty)
             .help("Copy refined prompt (falls back to original)")
@@ -890,7 +970,13 @@ struct ContentView: View {
             }
             .buttonStyle(.borderless)
             .help("Setup instructions")
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         }
+        .frame(height: 28)
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
         .background(.bar)
@@ -909,6 +995,13 @@ struct ContentView: View {
             if let generationResult {
                 PromptRunSummaryView(result: generationResult, profileName: selectedProfileDisplayName)
             }
+        }
+        .sheet(isPresented: $showPromptChanges) {
+            PromptChangesInspectorView(
+                originalText: originalText,
+                refinedText: refinedText,
+                onCopy: copyText
+            )
         }
         .sheet(isPresented: $showComparisonSetup) {
             PromptComparisonSetupView(
@@ -934,6 +1027,180 @@ struct ContentView: View {
                 traceStore: traceStore
             )
         }
+    }
+
+    private var compactEditorToolbar: some View {
+        HStack(spacing: 6) {
+            Button(action: requestNew) {
+                Image(systemName: "square.and.pencil")
+                    .font(.system(size: 13, weight: .medium))
+                    .frame(width: 26, height: 24)
+            }
+            .buttonStyle(.bordered)
+            .keyboardShortcut("n", modifiers: .command)
+            .help("New prompt  ⌘N")
+            .accessibilityLabel("New prompt")
+
+            Spacer(minLength: 4)
+
+            compactEndpointPrivacyBadge
+            modelPickerView(compact: true)
+            profilePickerView(compact: true)
+
+            Button {
+                if isGenerating {
+                    cancelGeneration(reason: .userRequested)
+                } else {
+                    refineWithAI()
+                }
+            } label: {
+                Image(systemName: isGenerating ? "stop.circle.fill" : "wand.and.sparkles")
+                    .font(.system(size: 13, weight: .medium))
+                    .frame(width: 26, height: 24)
+                    .contentTransition(.symbolEffect(.replace))
+            }
+            .buttonStyle(.bordered)
+            .tint(isGenerating ? .orange : .purple)
+            .keyboardShortcut(.return, modifiers: .command)
+            .disabled(!isGenerating && (isComparing || originalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || endpoint == nil || !hasSelectedAvailableModel))
+            .help(isGenerating ? "Stop generation  ⌘↩" : "Refine with \(selectedModel) via Ollama  ⌘↩")
+            .accessibilityLabel(isGenerating ? "Stop generation" : "Refine")
+
+            compactDetailsMenu
+
+            Button {
+                showPromptChanges = true
+            } label: {
+                Image(systemName: "arrow.left.arrow.right")
+                    .font(.system(size: 13, weight: .medium))
+                    .frame(width: 26, height: 24)
+            }
+            .buttonStyle(.borderless)
+            .keyboardShortcut("d", modifiers: [.command, .shift])
+            .disabled(
+                isComparing ||
+                (originalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                 refinedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+            )
+            .help("Prompt Changes  ⇧⌘D")
+            .accessibilityLabel("Prompt Changes")
+
+            Button(action: saveToHistory) {
+                Image(systemName: saveFeedback ? "checkmark.circle.fill" : "bookmark")
+                    .font(.system(size: 13, weight: .medium))
+                    .frame(width: 26, height: 24)
+                    .contentTransition(.symbolEffect(.replace))
+            }
+            .buttonStyle(.bordered)
+            .tint(saveFeedback ? .green : nil)
+            .disabled(
+                store.state != .ready || isGenerating || isComparing || store.isSaving ||
+                !canSave || (selectedID != nil && !isDirty)
+            )
+            .help("Save both fields to history")
+            .accessibilityLabel(saveFeedback ? "Saved" : "Save")
+
+            Button(action: copyToClipboard) {
+                Image(systemName: copyFeedback ? "checkmark.circle.fill" : "doc.on.doc")
+                    .font(.system(size: 13, weight: .medium))
+                    .frame(width: 26, height: 24)
+                    .contentTransition(.symbolEffect(.replace))
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(copyFeedback ? .green : .accentColor)
+            .disabled(activeText.isEmpty)
+            .help("Copy refined prompt (falls back to original)")
+            .accessibilityLabel(copyFeedback ? "Copied" : "Copy Refined")
+
+            Divider()
+                .frame(height: 16)
+
+            Button { showSetup = true } label: {
+                Image(systemName: "questionmark.circle")
+                    .font(.system(size: 14))
+                    .foregroundStyle(.secondary)
+                    .frame(width: 22, height: 24)
+            }
+            .buttonStyle(.borderless)
+            .help("Setup instructions")
+            .accessibilityLabel("Setup instructions")
+        }
+        .fixedSize(horizontal: true, vertical: false)
+    }
+
+    private var compactDetailsMenu: some View {
+        Menu {
+            Button {
+                showSpecEditor = true
+            } label: {
+                Label("Edit Spec", systemImage: "list.bullet.rectangle")
+            }
+            .disabled(promptSpec == nil || isGenerating || isComparing)
+
+            Button {
+                showRunDetails = true
+            } label: {
+                Label("Run Details", systemImage: "chart.bar.doc.horizontal")
+            }
+            .disabled(generationResult == nil || isComparing)
+
+            Button {
+                showPromptChanges = true
+            } label: {
+                Label("Prompt Changes", systemImage: "arrow.left.arrow.right")
+            }
+            .keyboardShortcut("d", modifiers: [.command, .option])
+            .disabled(
+                isComparing ||
+                (originalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                 refinedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+            )
+
+            Button {
+                showTraceBrowser = true
+            } label: {
+                Label("Run Traces", systemImage: "clock.arrow.circlepath")
+            }
+
+            Button {
+                showGroundingInspector = true
+            } label: {
+                Label("Context Inspector", systemImage: "text.magnifyingglass")
+            }
+            .help("Inspect indexed context and retrieval signals")
+
+            Divider()
+
+            Button {
+                if isComparing {
+                    cancelComparison()
+                } else {
+                    showComparisonSetup = true
+                }
+            } label: {
+                Label(
+                    isComparing ? "Stop Comparison" : "Compare Candidates",
+                    systemImage: isComparing ? "stop.circle" : "square.split.2x1"
+                )
+            }
+            .disabled(!isComparing && (isGenerating || originalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || endpoint == nil || availableModels.isEmpty))
+
+            Button {
+                showEvaluationLab = true
+            } label: {
+                Label("Evaluation Lab", systemImage: "checklist")
+            }
+            .disabled(isGenerating || isComparing)
+        } label: {
+            Image(systemName: isComparing ? "hourglass" : "ellipsis.circle")
+                .font(.system(size: 15, weight: .medium))
+                .frame(width: 28, height: 26)
+                .background(.quaternary, in: RoundedRectangle(cornerRadius: 7))
+        }
+        .menuStyle(.borderlessButton)
+        .fixedSize()
+        .help("Details and tools")
+        .accessibilityLabel(isComparing ? "Comparing" : "Details")
     }
 
     private var groundingEndpointKey: String {
